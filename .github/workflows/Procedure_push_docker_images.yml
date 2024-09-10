@@ -4,10 +4,6 @@ name: Push Docker Images
 on:
   workflow_dispatch:
     inputs:
-      JENKINS_REFERENCE:
-        description: 'wazuh-jenkins reference'
-        required: true
-        default: 'master'
       IMAGE_TAG:
         description: 'Docker image tag'
         required: true
