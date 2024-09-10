@@ -34,6 +34,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Print inputs
+      run: |
+        echo "---------------------------------------------"
+        echo "Running Procedure_push_docker_images workflow"
+        echo "---------------------------------------------"
+        echo "Inputs provided:"
+        echo "---------------------------------------------"
+        echo "* IMAGE_TAG: ${{ inputs.IMAGE_TAG }}"
+        echo "* DOCKER_REFERENCE: ${{ inputs.DOCKER_REFERENCE }}"
+        echo "* PRODUCTS: ${{ inputs.PRODUCTS }}"
+        echo "* FILEBEAT_MODULE_VERSION: ${{ inputs.FILEBEAT_MODULE_VERSION }}"
+        echo "* REVISION: ${{ inputs.REVISION }}"
+        echo "* PUSH_IMAGES: ${{ inputs.PUSH_IMAGES }}"
+
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
