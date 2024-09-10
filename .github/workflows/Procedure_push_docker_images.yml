@@ -6,12 +6,12 @@ on:
     inputs:
       IMAGE_TAG:
         description: 'Docker image tag'
-        required: true
         default: '4.10.0'
+        required: true
       DOCKER_REFERENCE:
         description: 'wazuh-docker reference'
+        default: 'v4.10.0'
         required: true
-        default: '4.10.0'
       PRODUCTS:
         description: 'Comma-separated list of the image names to build and push'
         default: 'wazuh-manager,wazuh-dashboard,wazuh-indexer'
@@ -21,12 +21,13 @@ on:
         required: true
       REVISION:
         description: 'Package revision'
+        default: '1'
         required: true
       PUSH_IMAGES:
         description: 'Push images'
-        required: true
         type: boolean
         default: true
+        required: true
 
 jobs:
   build-and-push:
@@ -43,6 +44,11 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
 
     - name: Build Wazuh images
       run: |
