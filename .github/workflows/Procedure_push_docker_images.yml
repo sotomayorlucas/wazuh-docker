@@ -85,7 +85,7 @@ jobs:
         fi
 
     - name: Tag and Push Wazuh images
-      if: ${{ inputs.PUSH_IMAGES == 'true' }}
+      if: ${{ inputs.PUSH_IMAGES }}
       run: |
         IMAGE_TAG=${{ inputs.IMAGE_TAG }}
         IMAGE_NAMES=${{ inputs.IMAGE_NAMES }}
