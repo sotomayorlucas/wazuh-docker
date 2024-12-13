@@ -1,9 +1,9 @@
 import logging
 import sys
 import json
-import random
 import string
 import os
+import secrets
 
 # Set framework path
 sys.path.append(os.path.dirname(sys.argv[0]) + "/../framework")
@@ -43,8 +43,7 @@ def db_roles():
 
 def disable_user(uid):
     random_pass = "".join(
-                random.choices(
-                    string.ascii_uppercase
+                secrets.SystemRandom().choices(string.ascii_uppercase
                     + string.ascii_lowercase
                     + string.digits
                     + SPECIAL_CHARS,
@@ -52,8 +51,8 @@ def disable_user(uid):
                 )
             )
     # assure there must be at least one character from each group
-    random_pass = random_pass + ''.join([random.choice(chars) for chars in [string.ascii_lowercase, string.digits, string.ascii_uppercase, SPECIAL_CHARS]])
-    random_pass = ''.join(random.sample(random_pass,len(random_pass)))
+    random_pass = random_pass + ''.join([secrets.choice(chars) for chars in [string.ascii_lowercase, string.digits, string.ascii_uppercase, SPECIAL_CHARS]])
+    random_pass = ''.join(secrets.SystemRandom().sample(random_pass,len(random_pass)))
     update_user(
         user_id=[
             str(uid),
